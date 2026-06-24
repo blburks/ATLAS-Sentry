@@ -95,5 +95,4 @@ These represent natural future expansions beyond the scope of this capstone.
 ## Author
 
 **Brad Burks**
-Capstone Project — Web Development / Computer Science
-Washington State University
+Capstone Project — Software Development Bates Technical College
