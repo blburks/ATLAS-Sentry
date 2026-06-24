@@ -47,15 +47,14 @@ This capstone project applies and extends skills developed across the web develo
 ## Project Structure
 
 ```
-atlas-sentry/
+C:/Users/bradl/ATLAS-Sentry/
 ├── src/
 │   ├── classes/        # Drone, Sensor, Station, Geofence classes
-│   ├── server/         # Express server, Socket.io, API routes
+│   ├── server/         # Express server, Socket.io, API routes (Phase 2)
 │   └── types/          # Shared TypeScript interfaces and types
 ├── client/             # React frontend dashboard (Phase 3)
 ├── package.json
-├── tsconfig.json
-└── README.md
+└── tsconfig.json
 ```
 
 ---
