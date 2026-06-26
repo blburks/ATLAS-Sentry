@@ -128,18 +128,46 @@ Large properties, wildlife refuges, farms, and remote facilities often lack affo
 
 ---
 
-## Out of Scope
+## Deployment Environment Options
 
-This project is a simulation. The following are intentionally excluded from this version:
+**Outdoor / Remote Deployment**
+- Primary Power: Solar panels
+- Backup Power: Onsite generator
+- Best for: farms, wildlife refuges, large open properties
 
-- Physical drone hardware or flight control
-- Real motion sensors or solar charging hardware
-- Advanced sensor systems such as infrared, thermal imaging, or night vision
-- Swarm intelligence or cooperative path planning
-- Hybrid mobility systems (ground to air or air to sea)
-- AI-driven threat classification or object recognition
+**Indoor / Controlled Deployment**
+- Primary Power: Hardwired powerline
+- Backup Power: Generator
+- Best for: warehouses, facilities, controlled environments
 
-These represent natural future expansions beyond the scope of this capstone.
+---
+
+## Project Tiers and Roadmap
+
+**Tier 1 — This Project (Capstone)**
+- Core drone, sensor, station, and geofence classes
+- Simulation loop and autonomous mission assignment
+- Battery drain and charging cycles
+- React dashboard with live WebSocket updates
+- Emergency shutdown protocol
+- Basic event logs and geofence overlays
+
+**Tier 2 — Next Phase Improvements**
+- Real power redundancy switching (solar / grid / generator)
+- Multiple deployment environment profiles (indoor / outdoor)
+- Drone fleet scaling and load balancing
+- Historical data logging and reporting
+- Mobile-friendly dashboard
+- User authentication and role-based access
+
+**Tier 3 — Fully Advanced**
+- Physical drone hardware integration
+- AI-driven threat detection and classification
+- Swarm intelligence and cooperative path planning
+- Infrared, thermal, and night vision sensor support
+- Hybrid mobility systems (ground-to-air)
+- Real-time weather adaptation
+- Cloud deployment and remote management
 
 ---
 
