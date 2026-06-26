@@ -7,9 +7,16 @@ ATLAS-Sentry is a JavaScript/TypeScript simulation of an autonomous property-mon
 
 ---
 
+## Team Members
+
+**Brad Burks** — Solo Developer
+Capstone Project — Software Development, Bates Technical College
+
+---
+
 ## What This Project Demonstrates
 
-This capstone project applies and extends skills developed across the web development and computer science curriculum:
+This capstone project applies and extends skills developed across the Software Development curriculum:
 
 - **Object-Oriented Programming** — Drone, Sensor, Station, and Geofence modeled as independent, cooperative classes
 - **Data Structures** — Queue-based mission assignment, hash-based sensor lookup, event log management
@@ -34,13 +41,13 @@ This capstone project applies and extends skills developed across the web develo
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Backend | Node.js, Express, TypeScript |
-| Real-Time | Socket.io (WebSocket) |
-| Frontend | React, TypeScript |
-| Data Visualization | Chart.js / Recharts |
-| Version Control | Git / GitHub |
+| Layer | Technology | Justification |
+|---|---|---|
+| Backend | Node.js, Express, TypeScript | Industry standard for event-driven, real-time applications |
+| Real-Time | Socket.io (WebSocket) | Enables live two-way communication between server and dashboard |
+| Frontend | React, TypeScript | Component-based UI ideal for live data visualization |
+| Data Visualization | Chart.js / Recharts | Lightweight charting libraries built for React |
+| Version Control | Git / GitHub | Industry standard for source control and project tracking |
 
 ---
 
@@ -72,6 +79,49 @@ React frontend, live WebSocket updates, event logs, geofence overlays, documenta
 
 ---
 
+## Milestones and Timeline
+
+| Week | Goal |
+|---|---|
+| Week 1 | Project setup, core classes (Drone, Sensor, Station, Geofence) |
+| Week 2 | State machines, TypeScript types, backend structure |
+| Week 3 | Simulation loop, mission assignment engine |
+| Week 4 | Battery drain, charging cycles, event handling |
+| Week 5 | React dashboard, WebSocket integration |
+| Week 6 | Event logs, map overlays, geofence visualization |
+| Week 7 | Final testing, documentation, pitch deck |
+
+---
+
+## Challenges and Risks
+
+| Challenge | Mitigation |
+|---|---|
+| Managing multiple drones simultaneously | Queue-based mission assignment ensures only one drone per event |
+| Real-time sync between backend and frontend | Socket.io handles live broadcasting without page refresh |
+| Battery and charging logic complexity | State machines enforce strict drone states preventing conflicts |
+| Scope creep | Out of scope items clearly defined and documented from day one |
+
+---
+
+## Evaluation Criteria
+
+The project is considered complete when:
+
+- All drones respond autonomously to sensor events without human input
+- Battery drain and charging cycles run continuously without errors
+- The React dashboard displays live drone positions, sensor status, and mission events
+- The emergency shutdown protocol successfully grounds all drones instantly
+- Code is documented, GitHub history reflects consistent progress, and the pitch deck is presentation ready
+
+---
+
+## Safety and Control Protocols
+
+ATLAS-Sentry is designed with safety as a priority. The system includes a manual emergency shutdown protocol that immediately grounds all active drones, halts all mission assignment, and directs drones to their nearest charging station. No autonomous process can override a shutdown command. This ensures that human control is always available regardless of the system's current state — the drones serve the operator, not the other way around.
+
+---
+
 ## Problem Statement
 
 Large properties, wildlife refuges, farms, and remote facilities often lack affordable automated monitoring solutions. Traditional systems rely on static cameras or human patrols, which provide limited coverage and slow response times. ATLAS-Sentry simulates a distributed autonomous drone network capable of responding to motion events, coordinating tasks across multiple drones, and maintaining persistent coverage through solar-powered charging.
@@ -84,7 +134,9 @@ This project is a simulation. The following are intentionally excluded from this
 
 - Physical drone hardware or flight control
 - Real motion sensors or solar charging hardware
+- Advanced sensor systems such as infrared, thermal imaging, or night vision
 - Swarm intelligence or cooperative path planning
+- Hybrid mobility systems (ground to air or air to sea)
 - AI-driven threat classification or object recognition
 
 These represent natural future expansions beyond the scope of this capstone.
@@ -94,4 +146,4 @@ These represent natural future expansions beyond the scope of this capstone.
 ## Author
 
 **Brad Burks**
-Capstone Project — Software Development Bates Technical College
+Capstone Project — Software Development, Bates Technical College
