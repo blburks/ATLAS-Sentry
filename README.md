@@ -28,11 +28,12 @@ Large properties, wildlife refuges, farms, and remote facilities often lack affo
 
 ## Target Users and Use Cases
 
-- Property owners managing large or remote land
+- Property owners managing large or remote areas
 - Wildlife refuge and conservation operators
 - Agricultural facilities requiring perimeter monitoring
 - Industrial warehouses and controlled indoor environments
-- Emergency management teams needing rapid area coverage
+- Emergency management teams needing rapid area coverage and response
+- Military installations
 
 ---
 
@@ -60,7 +61,7 @@ The brain of the operation. Evaluates all available drones, selects the best can
 ATLAS-Sentry supports multiple drone classes, each matched to a specific deployment environment. The mission engine selects the appropriate class automatically based on the active geofence zone and sensor event location.
 
 **Class A — Outdoor / Heavy Duty**
-Built for open environments where conditions are unpredictable. Handles wind, weather, and extended range patrol. Equipped with a proximity ping system that broadcasts the drone's last known location if contact is lost — critical for recovery when a unit goes offline across a large property.
+Built for open environments where conditions are unpredictable. Handles wind, weather, and extended range patrol. Equipped with a proximity ping system that broadcasts the drone's last known location if contact is lost — critical for recovery when a unit goes offline across a large area.
 
 *What it takes to build:*
 - Commercial grade frame rated for wind and weather resistance
@@ -93,7 +94,7 @@ Extends coverage to water surfaces, shorelines, and flood zones. Works alongside
 - Primary Power: Solar panels
 - Backup Power: Onsite generator
 - Drone Class: A (and future C, D)
-- Best for: farms, wildlife refuges, open properties
+- Best for: farms, wildlife refuges, open and restricted areas
 
 **Indoor / Controlled**
 - Primary Power: Hardwired powerline
