@@ -48,6 +48,33 @@ export interface StationSnapshot {
   capacity: number;
 }
 
+// The maintenance jobs a ServiceStation runs on a docked drone
+export type ServiceTaskType =
+  | 'recharge'
+  | 'lens_clean'
+  | 'retardant_refill'
+  | 'systems_check';
+
+// A single maintenance job within a drone's service queue
+export interface ServiceTask {
+  type: ServiceTaskType;
+  ticksRequired: number;
+  ticksElapsed: number;
+}
+
+// Per-drone service status included in a ServiceStation snapshot
+export interface ActiveServiceStatus {
+  droneId: string;
+  currentTask: ServiceTaskType | null;
+  tasksRemaining: number;
+}
+
+// The data snapshot sent to the frontend for a service station
+export interface ServiceStationSnapshot extends StationSnapshot {
+  assignedDroneIds: string[];
+  activeServices: ActiveServiceStatus[];
+}
+
 // The data snapshot sent to the frontend for a geofence zone
 export interface GeofenceSnapshot {
   id: string;
