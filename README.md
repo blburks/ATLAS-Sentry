@@ -213,6 +213,7 @@ C:/Users/bradl/ATLAS-Sentry/
 - Mobile-friendly dashboard view
 - User authentication and role-based access control
 - ServiceStation — assigned drone maintenance bays with service cycles, payload management, and inspection checks
+- ServiceStation health status (operational / compromised / offline) with automatic reroute of a station's roster to a fallback station if it goes down
 
 **Tier 3 — Fully Advanced**
 - Class C hybrid drone with environment-adaptive flight modes
