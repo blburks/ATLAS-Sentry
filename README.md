@@ -104,6 +104,8 @@ Extends coverage to water surfaces, shorelines, and flood zones alongside Class 
 
 Hardware requirements vary by deployment class. Outdoor units require a commercial grade frame rated for wind and weather resistance, high-capacity battery, GPS module with redundant signal support, weatherproof electronics housing, and a proximity ping system for last known location tracking. Indoor units require a lightweight micro frame, ultrasonic or infrared obstacle avoidance sensors, and a low-noise motor system. Power source is determined at deployment — solar and generator for outdoor, hardwired and generator for indoor.
 
+In the simulation, battery is modeled as an abstract 0–100 scale rather than a specific capacity (mAh) or real-world flight time. Simulation ticks do not map to a fixed real-world time unit, so drain and charge rates are tuned for simulation behavior, not hardware accuracy. A production build would replace this abstraction with real battery specifications tied to the selected frame and flight controller.
+
 *What it takes to build — Software:*
 
 Both classes share the same core software foundation — a state machine governing patrolling, responding, returning, and charging states, battery drain per tick with automatic low-battery return trigger, and full mission engine integration for receiving assignments, navigating to target, and reporting completion. Class A extends this with weather threshold detection, patrol waypoint logic across outdoor geofence zones, and proximity ping on threat detection. Class B extends it with indoor navigation logic, obstacle avoidance handling, and geofence-based assignment prioritizing the nearest available indoor unit.
