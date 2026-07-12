@@ -80,10 +80,15 @@ export interface ServiceStationSnapshot extends StationSnapshot {
   activeServices: ActiveServiceStatus[];
 }
 
+// Which drone class a geofence zone is built for — separate from `type`,
+// which describes the response policy (patrol vs. restricted), not the environment.
+export type GeofenceEnvironment = 'outdoor' | 'indoor';
+
 // The data snapshot sent to the frontend for a geofence zone
 export interface GeofenceSnapshot {
   id: string;
   name: string;
   type: 'patrol' | 'restricted';
+  environment: GeofenceEnvironment;
   boundary: Position[];
 }

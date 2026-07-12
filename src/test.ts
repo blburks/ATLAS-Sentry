@@ -18,7 +18,7 @@ console.log(`State: ${drone.getState()}`);
 console.log(`Battery: ${drone.getBattery()}%\n`);
 
 // Step 3 — Create a geofence zone
-const zone = new Geofence('zone-01', 'North Perimeter', 'patrol', [
+const zone = new Geofence('zone-01', 'North Perimeter', 'patrol', 'outdoor', [
   { x: 0, y: 0 },
   { x: 100, y: 0 },
   { x: 100, y: 100 },

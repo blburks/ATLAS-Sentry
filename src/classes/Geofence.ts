@@ -1,19 +1,27 @@
-import type { Position, GeofenceSnapshot } from '../types/index';
+import type { Position, GeofenceEnvironment, GeofenceSnapshot } from '../types/index';
 
 export class Geofence {
   readonly id: string;
   readonly name: string;
   readonly type: 'patrol' | 'restricted';
+  readonly environment: GeofenceEnvironment;
 
   private boundary: Position[];
 
-  constructor(id: string, name: string, type: 'patrol' | 'restricted', boundary: Position[]) {
+  constructor(
+    id: string,
+    name: string,
+    type: 'patrol' | 'restricted',
+    environment: GeofenceEnvironment,
+    boundary: Position[]
+  ) {
     if (boundary.length < 3) {
       throw new Error(`Geofence ${id} requires at least 3 points to form a boundary`);
     }
     this.id = id;
     this.name = name;
     this.type = type;
+    this.environment = environment;
     this.boundary = boundary;
   }
 
@@ -49,6 +57,7 @@ export class Geofence {
       id: this.id,
       name: this.name,
       type: this.type,
+      environment: this.environment,
       boundary: this.boundary.map(p => ({ ...p })),
     };
   }
