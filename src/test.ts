@@ -12,7 +12,7 @@ console.log(`Position: (${station.getPosition().x}, ${station.getPosition().y})`
 console.log(`Capacity: ${station.getDockedDroneIds().length} / 2 drones docked\n`);
 
 // Step 2 — Create a drone assigned to that station
-const drone = new Drone('drone-01', 'Alpha-1', { x: 10, y: 10 }, station.id);
+const drone = new Drone('drone-01', 'Alpha-1', 'A', { x: 10, y: 10 }, station.id);
 console.log(`Drone created: ${drone.name}`);
 console.log(`State: ${drone.getState()}`);
 console.log(`Battery: ${drone.getBattery()}%\n`);

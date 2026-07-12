@@ -6,6 +6,10 @@ export type DroneState =
   | 'returning'
   | 'charging';
 
+// Deployment class — determines which geofence zones a drone can be dispatched to.
+// Class C and D are Tier 3 and do not exist in code yet.
+export type DroneClass = 'A' | 'B';
+
 // Defines the valid states a motion sensor can be in
 export type SensorState = 'active' | 'triggered' | 'cooldown';
 
@@ -26,6 +30,7 @@ export interface Mission {
 export interface DroneSnapshot {
   id: string;
   name: string;
+  droneClass: DroneClass;
   state: DroneState;
   battery: number;
   position: Position;

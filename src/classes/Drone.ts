@@ -1,4 +1,4 @@
-import type { DroneState, Mission, Position, DroneSnapshot } from '../types/index';
+import type { DroneClass, DroneState, Mission, Position, DroneSnapshot } from '../types/index';
 
 // Valid state transitions — a drone can only move between states in defined ways
 const ALLOWED_TRANSITIONS: Record<DroneState, DroneState[]> = {
@@ -12,6 +12,7 @@ const ALLOWED_TRANSITIONS: Record<DroneState, DroneState[]> = {
 export class Drone {
   readonly id: string;
   readonly name: string;
+  readonly droneClass: DroneClass;
 
   private state: DroneState;
   private battery: number;           // 0–100
@@ -25,9 +26,10 @@ export class Drone {
   static readonly DRAIN_PER_TICK = 1;    // battery lost each simulation tick
   static readonly CHARGE_PER_TICK = 5;   // battery gained while docked
 
-  constructor(id: string, name: string, startPosition: Position, homeStationId: string) {
+  constructor(id: string, name: string, droneClass: DroneClass, startPosition: Position, homeStationId: string) {
     this.id = id;
     this.name = name;
+    this.droneClass = droneClass;
     this.state = 'idle';
     this.battery = Drone.FULL_BATTERY;
     this.position = startPosition;
@@ -106,6 +108,7 @@ export class Drone {
     return {
       id: this.id,
       name: this.name,
+      droneClass: this.droneClass,
       state: this.state,
       battery: this.battery,
       position: { ...this.position },
