@@ -103,6 +103,10 @@ export class Drone {
     return this.position;
   }
 
+  getMission(): Mission | null {
+    return this.mission;
+  }
+
   // Returns a plain object snapshot safe to send over WebSocket
   snapshot(): DroneSnapshot {
     return {
