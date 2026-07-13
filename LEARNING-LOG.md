@@ -143,4 +143,137 @@ keeps the compiled output clean and signals intent clearly to anyone reading the
 `src/classes/Geofence.ts` — top of each file.
 
 ---
+
+## Step 3 — Mission Assignment, Simulation Loop, and Real-Time Server
+
+---
+
+### 6. Centralized Tick Orchestration (Simulator / Mediator Pattern)
+
+**What it is:**
+Step 2 gave individual classes their own `tick()` method (a drone drains its own
+battery, a sensor counts down its own cooldown). A centralized orchestrator goes
+further — one class ticks every entity in a fixed order each cycle, then reacts
+to the combined result (a drone that just finished responding gets routed home,
+a newly triggered sensor gets dispatched a drone). No single class knows about
+this coordination; it lives entirely in the orchestrator.
+
+**Where the idea came from:**
+Prior coursework covered simulating a single object's behavior over time, not
+coordinating many independent objects that need to react to each other's state
+changes on the same clock. The problem was: how do you keep every entity's state
+consistent within one simulation cycle without objects directly calling into
+each other?
+
+**How it was researched and applied:**
+Researched the mediator pattern — a design where objects don't reference each
+other directly, but instead a central coordinator reads their state and issues
+commands. Applied it in `Simulator.tick()`: it ticks every drone, sensor, and
+in-progress service queue, then runs two coordination passes (complete/route
+home responding drones past their response window, release fully-charged
+drones) before dispatching any newly triggered sensors through the
+`MissionEngine`. Drones and sensors never reference the `Simulator` or each
+other.
+
+**Source:**
+Refactoring.Guru — Mediator Design Pattern — conceptual reference for
+centralizing object coordination behind one orchestrator instead of letting
+objects reference each other directly.
+
+**Where it appears in the project:**
+`src/classes/Simulator.ts` — `tick()`, `advanceResponses()`, `releaseCharged()`,
+`dispatchNewMissions()`.
+
+---
+
+### 7. Express.js HTTP Server
+
+**What it is:**
+Express is a minimal Node.js web framework for defining HTTP routes (e.g.
+`GET /health`) and handling requests/responses without writing raw Node `http`
+module boilerplate for routing.
+
+**Where the idea came from:**
+Prior coursework did not cover building or exposing a backend server — only
+consuming existing APIs. The problem was: how does a browser-based dashboard
+(Phase 3) get simulation data out of a Node.js process running the simulation?
+
+**How it was researched and applied:**
+Researched Express's routing and middleware model as the standard, widely
+documented choice for a Node/TypeScript backend. Applied it as a small set of
+routes (`/health`, `/api/state`) sitting on top of the same Node `http` server
+instance that Socket.io attaches to, so both HTTP requests and WebSocket
+connections share one listening port.
+
+**Source:**
+Express.js Official Documentation (expressjs.com) — routing, middleware, and
+attaching Express to an existing Node `http.Server` instance.
+
+**Where it appears in the project:**
+`src/server/index.ts`.
+
+---
+
+### 8. Socket.io Real-Time Broadcast
+
+**What it is:**
+Socket.io is a library built on top of WebSockets that adds automatic
+reconnection, an event-based send/receive API, and room-based broadcasting
+(sending the same message to every connected client at once) without manually
+managing raw socket connections.
+
+**Where the idea came from:**
+Already identified during the proposal phase as the tool for pushing live
+simulation state to a future dashboard without the dashboard needing to poll
+the server on a timer. The problem, once actually building it: how does the
+server send an updated snapshot to every connected browser the instant the
+simulation state changes, not just when a browser asks?
+
+**How it was researched and applied:**
+Researched Socket.io's server API — attaching it to an existing `http.Server`
+instance, emitting named events, and broadcasting to all connected clients with
+a single `io.emit()` call. Applied it so that every simulation tick, the server
+builds one snapshot object and emits it to every connected client at once; a
+newly connecting client also immediately receives the current snapshot instead
+of waiting for the next tick.
+
+**Source:**
+Socket.io Official Documentation — event-driven communication model, room
+broadcasting, and connection lifecycle management. Same source cited in the
+README's Independent Research section for the original tool selection; this
+entry documents how it was actually applied in code.
+
+**Where it appears in the project:**
+`src/server/index.ts` — `io.on('connection', ...)`, `io.emit('state', ...)`.
+
+---
+
+### 9. Environment-Based Configuration (dotenv)
+
+**What it is:**
+Instead of hard-coding values like a server's port number directly in source
+code, `dotenv` loads key/value pairs from a `.env` file into `process.env` at
+startup, so configuration can change per environment (local machine, grading
+environment, future deployment) without editing code.
+
+**Where the idea came from:**
+Prior coursework did not separate configuration from code — scripts ran with
+fixed values. The problem: a hard-coded port number (or simulation tick speed)
+means anyone running the project has to edit source code just to change it.
+
+**How it was researched and applied:**
+Researched the standard `dotenv` pattern of a git-ignored `.env` file for real
+values and a committed `.env.example` documenting what variables exist.
+Applied it for `PORT` and `TICK_INTERVAL_MS`, both read from `process.env` with
+sensible fallback defaults if no `.env` file is present.
+
+**Source:**
+dotenv package documentation (npmjs.com/package/dotenv, github.com/motdotla/dotenv)
+— `.env` file convention, `.env.example` as a committed template, and loading
+values into `process.env` at process startup.
+
+**Where it appears in the project:**
+`src/server/index.ts` (`import 'dotenv/config'`), `.env.example`.
+
+---
 *Entries will be added after each completed project step.*
