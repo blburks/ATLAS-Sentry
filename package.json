@@ -8,19 +8,23 @@
     "start": "node dist/server/index.js",
     "dev": "ts-node src/server/index.ts"
   },
-  "keywords": ["drone", "autonomous", "surveillance", "typescript"],
+  "keywords": [
+    "drone",
+    "autonomous",
+    "surveillance",
+    "typescript"
+  ],
   "author": "Brad Burks",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.3",
-    "@types/ws": "^8.18.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   },
   "dependencies": {
     "express": "^5.2.1",
-    "ws": "^8.21.0"
+    "socket.io": "^4.8.3"
   }
 }
